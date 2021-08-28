@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringEncrypter", "StringEncrypter\StringEncrypter.csproj", "{F8AE7943-A943-48B6-B65C-FB08E2409EB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringEncrypter.PluginDemo", "StringEncrypter.PluginDemo\StringEncrypter.PluginDemo.csproj", "{EC62D87E-EA21-473C-8B8A-48A71D0F3599}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F8AE7943-A943-48B6-B65C-FB08E2409EB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8AE7943-A943-48B6-B65C-FB08E2409EB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8AE7943-A943-48B6-B65C-FB08E2409EB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC62D87E-EA21-473C-8B8A-48A71D0F3599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC62D87E-EA21-473C-8B8A-48A71D0F3599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC62D87E-EA21-473C-8B8A-48A71D0F3599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC62D87E-EA21-473C-8B8A-48A71D0F3599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

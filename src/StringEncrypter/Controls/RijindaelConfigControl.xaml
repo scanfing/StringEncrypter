@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="StringEncrypter.Controls.RijindaelConfigControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:StringEncrypter.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Name="cfgControl"
+             d:DesignHeight="100"
+             d:DesignWidth="500"
+             mc:Ignorable="d">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <WrapPanel Orientation="Horizontal">
+            <DockPanel Width="180"
+                       Height="30"
+                       Margin="8,4">
+                <TextBlock VerticalAlignment="Center" Text="CipherMode:" />
+                <Rectangle Width="1" Margin="4,0" />
+                <ComboBox x:Name="CmboxCipherMode"
+                          Height="30"
+                          MinHeight="18"
+                          VerticalAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          SelectedItem="{Binding ElementName=cfgControl, Path=RijndaelManaged.Mode}" />
+            </DockPanel>
+
+            <DockPanel Width="180" Margin="8,4">
+                <TextBlock VerticalAlignment="Center" Text="PaddingMode:" />
+                <Rectangle Width="1" Margin="4,0" />
+                <ComboBox x:Name="CmboxPaddingMode"
+                          MinHeight="30"
+                          VerticalAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          SelectedItem="{Binding ElementName=cfgControl, Path=RijndaelManaged.Padding}" />
+            </DockPanel>
+
+            <DockPanel Width="180"
+                       Height="30"
+                       Margin="8,4">
+                <TextBlock VerticalAlignment="Center"
+                           DockPanel.Dock="Left"
+                           Text="Key:" />
+                <Rectangle Width="1"
+                           Margin="4,0"
+                           DockPanel.Dock="Left" />
+                <TextBox MinWidth="120"
+                         VerticalContentAlignment="Center"
+                         Text="{Binding ElementName=cfgControl, Path=Key}" />
+            </DockPanel>
+
+            <DockPanel Width="180"
+                       Height="30"
+                       Margin="8,4">
+                <TextBlock VerticalAlignment="Center"
+                           DockPanel.Dock="Left"
+                           Text="IV:" />
+                <Rectangle Width="1"
+                           Margin="4,0"
+                           DockPanel.Dock="Left" />
+                <TextBox MinWidth="120"
+                         VerticalContentAlignment="Center"
+                         Text="{Binding ElementName=cfgControl, Path=IV, Mode=TwoWay}" />
+            </DockPanel>
+        </WrapPanel>
+    </ScrollViewer>
+</UserControl>

@@ -55,20 +55,55 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="Controls\RijindaelConfigControl.xaml.cs">
+      <DependentUpon>RijindaelConfigControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Encrypters\Encrypter.cs" />
+    <Compile Include="Encrypters\IEncrypter.cs" />
+    <Compile Include="Encrypters\KeyIVEncrypter.cs" />
+    <Compile Include="Encrypters\RijndaelEncrypter.cs" />
+    <Compile Include="Encrypters\SHA1.cs" />
+    <Compile Include="Encrypters\SHA256.cs" />
+    <Compile Include="Extensitions\ByteExtensition.cs" />
+    <Compile Include="Infrastructure\BindableBase.cs" />
+    <Compile Include="Encrypters\AES.cs" />
+    <Compile Include="Encrypters\Base64.cs" />
+    <Compile Include="Encrypters\DES.cs" />
+    <Compile Include="Encrypters\MD5.cs" />
+    <Compile Include="Controls\KeyIVControl.xaml.cs">
+      <DependentUpon>KeyIVControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\DelegateCommand.cs" />
+    <Compile Include="Infrastructure\DelegateCommandBase.cs" />
+    <Compile Include="Infrastructure\PropertyObserver.cs" />
+    <Compile Include="Infrastructure\PropertyObserverNode.cs" />
+    <Compile Include="Services\EncrypterService.cs" />
+    <Compile Include="Views\ShellView.xaml.cs">
+      <DependentUpon>ShellView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Controls\RijindaelConfigControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DefaultStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\KeyIVControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VIewModels\ShellViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -91,11 +126,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
