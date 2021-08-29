@@ -23,11 +23,18 @@ namespace StringEncrypter.Controls
     {
         #region Fields
 
-        // Using a DependencyProperty as the backing store for IV.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for Encoding. This enables animation,
+        // styling, binding, etc...
+        public static readonly DependencyProperty EncodingProperty =
+            DependencyProperty.Register("Encoding", typeof(Encoding), typeof(KeyIVControl), new PropertyMetadata(Encoding.Unicode, EncodingChangedCallback));
+
+        // Using a DependencyProperty as the backing store for IV. This enables animation, styling,
+        // binding, etc...
         public static readonly DependencyProperty IVProperty =
             DependencyProperty.Register("IV", typeof(string), typeof(KeyIVControl), new PropertyMetadata("", IVChangedCallback));
 
-        // Using a DependencyProperty as the backing store for Key.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for Key. This enables animation, styling,
+        // binding, etc...
         public static readonly DependencyProperty KeyProperty =
             DependencyProperty.Register("Key", typeof(string), typeof(KeyIVControl), new PropertyMetadata("", KeyChangedCallback));
 
@@ -43,12 +50,23 @@ namespace StringEncrypter.Controls
         public KeyIVControl(KeyIVEncrypter keyIVEncrypter)
         {
             InitializeComponent();
+
             _KeyIVEncrypter = keyIVEncrypter;
+
+            CmboxEncoding.ItemsSource = Encoding.GetEncodings();
+
+            Loaded += KeyIVControl_Loaded;
         }
 
         #endregion Constructors
 
         #region Properties
+
+        public Encoding Encoding
+        {
+            get { return (Encoding)GetValue(EncodingProperty); }
+            set { SetValue(EncodingProperty, value); }
+        }
 
         public string IV
         {
@@ -66,6 +84,12 @@ namespace StringEncrypter.Controls
 
         #region Methods
 
+        private static void EncodingChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as KeyIVControl;
+            control.OnEncodingChanged((Encoding)e.OldValue, (Encoding)e.NewValue);
+        }
+
         private static void IVChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var kivcontrol = d as KeyIVControl;
@@ -76,6 +100,16 @@ namespace StringEncrypter.Controls
         {
             var kivcontrol = d as KeyIVControl;
             kivcontrol.OnKeyChanged((string)e.OldValue, (string)e.NewValue);
+        }
+
+        private void KeyIVControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Encoding = _KeyIVEncrypter.Encoding;
+        }
+
+        private void OnEncodingChanged(Encoding oldEncoding, Encoding newEncoding)
+        {
+            _KeyIVEncrypter.Encoding = newEncoding;
         }
 
         private void OnIVChanged(string oldIV, string newIV)

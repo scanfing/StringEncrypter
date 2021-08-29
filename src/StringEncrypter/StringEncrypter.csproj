@@ -55,9 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\EncodingControl.xaml.cs">
+      <DependentUpon>EncodingControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RijindaelConfigControl.xaml.cs">
       <DependentUpon>RijindaelConfigControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\Encoding2InfoConverter.cs" />
+    <Compile Include="Converters\Info2EncodingConverter.cs" />
     <Compile Include="Encrypters\Encrypter.cs" />
     <Compile Include="Encrypters\IEncrypter.cs" />
     <Compile Include="Encrypters\KeyIVEncrypter.cs" />
@@ -85,7 +90,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Controls\EncodingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\RijindaelConfigControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

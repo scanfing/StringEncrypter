@@ -20,8 +20,8 @@ namespace StringEncrypter.Encrypters
         #region Constructors
 
         /// <summary>
-        /// IEncrypter 抽象基类，子类需重写实现 <see cref="Encrypt(string)"/>。
-        /// 将 <see cref="CanDecrypt"/> 标记为 true 时，需实现 <see cref="Decrypt(string)" /> 方法。
+        /// IEncrypter 抽象基类，子类需重写实现 <see cref="Encrypt(string)"/>。 将 <see cref="CanDecrypt"/> 标记为
+        /// true 时，需实现 <see cref="Decrypt(string)"/> 方法。
         /// </summary>
         public Encrypter()
         {
@@ -39,7 +39,7 @@ namespace StringEncrypter.Encrypters
         /// <summary>
         /// 加解密时使用的字符串编码，默认UTF8
         /// </summary>
-        public Encoding Encoding { get; protected set; } = Encoding.UTF8;
+        public Encoding Encoding { get; set; } = Encoding.UTF8;
 
         public FrameworkElement EncryptConfigView
         {
@@ -77,7 +77,7 @@ namespace StringEncrypter.Encrypters
 
         protected virtual FrameworkElement CreateControl()
         {
-            return new TextBlock() { Text = Name };
+            return new EncodingControl(this);
         }
 
         #endregion Methods

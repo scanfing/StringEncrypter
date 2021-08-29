@@ -13,6 +13,20 @@
             <DockPanel Width="180"
                        Height="30"
                        Margin="8,4">
+                <TextBlock VerticalAlignment="Center" Text="Encoding:" />
+                <Rectangle Width="1" Margin="4,0" />
+                <ComboBox x:Name="CmboxEncoding"
+                          Height="30"
+                          MinHeight="18"
+                          VerticalAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          DisplayMemberPath="Name"
+                          SelectedItem="{Binding ElementName=cfgControl, Path=Encoding, Converter={StaticResource Encoding2InfoConverter}}" />
+            </DockPanel>
+
+            <DockPanel Width="180"
+                       Height="30"
+                       Margin="8,4">
                 <TextBlock VerticalAlignment="Center" Text="CipherMode:" />
                 <Rectangle Width="1" Margin="4,0" />
                 <ComboBox x:Name="CmboxCipherMode"

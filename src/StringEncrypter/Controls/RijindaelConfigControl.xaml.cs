@@ -24,15 +24,23 @@ namespace StringEncrypter.Controls
     {
         #region Fields
 
-        // Using a DependencyProperty as the backing store for IV.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for Encoding. This enables animation,
+        // styling, binding, etc...
+        public static readonly DependencyProperty EncodingProperty =
+            DependencyProperty.Register("Encoding", typeof(Encoding), typeof(RijindaelConfigControl), new PropertyMetadata(Encoding.Unicode, EncodingChangedCallback));
+
+        // Using a DependencyProperty as the backing store for IV. This enables animation, styling,
+        // binding, etc...
         public static readonly DependencyProperty IVProperty =
             DependencyProperty.Register("IV", typeof(string), typeof(RijindaelConfigControl), new PropertyMetadata("", IVChangedCallback));
 
-        // Using a DependencyProperty as the backing store for Key.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for Key. This enables animation, styling,
+        // binding, etc...
         public static readonly DependencyProperty KeyProperty =
             DependencyProperty.Register("Key", typeof(string), typeof(RijindaelConfigControl), new PropertyMetadata("", KeyChangedCallback));
 
         private RijndaelEncrypter _rEncrypter;
+
         private RijndaelManaged _rijndael;
 
         #endregion Fields
@@ -46,6 +54,8 @@ namespace StringEncrypter.Controls
 
             InitializeComponent();
 
+            CmboxEncoding.ItemsSource = Encoding.GetEncodings();
+
             CmboxCipherMode.Items.Add(CipherMode.CBC);
             CmboxCipherMode.Items.Add(CipherMode.ECB);
             CmboxCipherMode.Items.Add(CipherMode.OFB);
@@ -57,11 +67,21 @@ namespace StringEncrypter.Controls
             CmboxPaddingMode.Items.Add(PaddingMode.Zeros);
             CmboxPaddingMode.Items.Add(PaddingMode.ISO10126);
             CmboxPaddingMode.Items.Add(PaddingMode.ANSIX923);
+
+            Loaded += RijindaelConfigControl_Loaded;
         }
 
         #endregion Constructors
 
         #region Properties
+
+        public Encoding Encoding
+        {
+            get { return (Encoding)GetValue(EncodingProperty); }
+            set { SetValue(EncodingProperty, value); }
+        }
+
+        public RijndaelEncrypter Encrypter => _rEncrypter;
 
         public string IV
         {
@@ -81,6 +101,12 @@ namespace StringEncrypter.Controls
 
         #region Methods
 
+        private static void EncodingChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as RijindaelConfigControl;
+            control.OnEncodingChanged((Encoding)e.OldValue, (Encoding)e.NewValue);
+        }
+
         private static void IVChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as RijindaelConfigControl;
@@ -93,6 +119,11 @@ namespace StringEncrypter.Controls
             control.OnKeyChanged((string)e.OldValue, (string)e.NewValue);
         }
 
+        private void OnEncodingChanged(Encoding oldEncoding, Encoding newEncoding)
+        {
+            _rEncrypter.Encoding = newEncoding;
+        }
+
         private void OnIVChanged(string oldIV, string newIV)
         {
             _rEncrypter.IVStr = newIV;
@@ -101,6 +132,11 @@ namespace StringEncrypter.Controls
         private void OnKeyChanged(string oldKey, string newKey)
         {
             _rEncrypter.KeyStr = newKey;
+        }
+
+        private void RijindaelConfigControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Encoding = _rEncrypter.Encoding;
         }
 
         #endregion Methods
