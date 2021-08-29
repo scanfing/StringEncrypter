@@ -53,18 +53,19 @@ namespace StringEncrypter.Services
                 try
                 {
                     ass = await Task.Run(() => Assembly.LoadFile(file));
+
+                    foreach (var t in ass.GetTypes())
+                    {
+                        if (t.IsClass && !t.IsAbstract && interfaceType.IsAssignableFrom(t))
+                        {
+                            System.Diagnostics.Trace.TraceInformation($"Find Encrypter: {t.FullName}.");
+                            diskEncrypters.Add(ass.CreateInstance(t.FullName) as IEncrypter);
+                        }
+                    }
                 }
                 catch (Exception)
                 {
                     continue;
-                }
-                foreach (var t in ass.GetTypes())
-                {
-                    if (t.IsClass && !t.IsAbstract && interfaceType.IsAssignableFrom(t))
-                    {
-                        System.Diagnostics.Trace.TraceInformation($"Find Encrypter: {t.FullName}.");
-                        diskEncrypters.Add(ass.CreateInstance(t.FullName) as IEncrypter);
-                    }
                 }
             }
             return diskEncrypters.ToArray();
