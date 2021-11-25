@@ -63,6 +63,7 @@
     </Compile>
     <Compile Include="Converters\Encoding2InfoConverter.cs" />
     <Compile Include="Converters\Info2EncodingConverter.cs" />
+    <Compile Include="Encrypters\Caps.cs" />
     <Compile Include="Encrypters\Encrypter.cs" />
     <Compile Include="Encrypters\IEncrypter.cs" />
     <Compile Include="Encrypters\KeyIVEncrypter.cs" />
