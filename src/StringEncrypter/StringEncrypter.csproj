@@ -58,6 +58,9 @@
     <Compile Include="Controls\EncodingControl.xaml.cs">
       <DependentUpon>EncodingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\KeyControl.xaml.cs">
+      <DependentUpon>KeyControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RijindaelConfigControl.xaml.cs">
       <DependentUpon>RijindaelConfigControl.xaml</DependentUpon>
     </Compile>
@@ -66,6 +69,7 @@
     <Compile Include="Encrypters\Caps.cs" />
     <Compile Include="Encrypters\Encrypter.cs" />
     <Compile Include="Encrypters\IEncrypter.cs" />
+    <Compile Include="Encrypters\KeyEncrypter.cs" />
     <Compile Include="Encrypters\KeyIVEncrypter.cs" />
     <Compile Include="Encrypters\RijndaelEncrypter.cs" />
     <Compile Include="Encrypters\SHA1.cs" />
@@ -94,6 +98,10 @@
     <Page Include="Controls\EncodingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\KeyControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\RijindaelConfigControl.xaml">
       <SubType>Designer</SubType>

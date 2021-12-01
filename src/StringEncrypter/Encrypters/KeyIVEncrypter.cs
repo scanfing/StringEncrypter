@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StringEncrypter.Encrypters
 {
-    public abstract class KeyIVEncrypter : Encrypter
+    public abstract class KeyIVEncrypter : KeyEncrypter
     {
         #region Constructors
 
@@ -27,17 +27,6 @@ namespace StringEncrypter.Encrypters
         {
             get => Encoding.GetString(IV);
             set => IV = Encoding.GetBytes(value);
-        }
-
-        public byte[] Key { get; set; }
-
-        public string KeyStr
-        {
-            get => Encoding.GetString(Key);
-            set
-            {
-                Key = Encoding.GetBytes(value);
-            }
         }
 
         #endregion Properties
